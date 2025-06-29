@@ -1,0 +1,20 @@
+{
+  "name": "mobili-piu",
+  "version": "1.0.0",
+  "description": "Mobili più - Prodaja bijele tehnike, malih kućanskih aparata i namještaja",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "install-deps": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "keywords": ["mobili", "furniture", "appliances", "vue", "express"],
+  "author": "Sandra Fabijanić",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 
