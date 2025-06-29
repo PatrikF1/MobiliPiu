@@ -28,7 +28,13 @@ NODE_ENV=production
 VITE_API_URL=https://your-app-name.vercel.app/api
 ```
 
-## 📋 Koraci za Deployment:
+## ⚠️ VAŽNO: Alternativni Pristup
+
+Za jednostavniji deployment, preporučujem **odvojeni deployment**:
+- Frontend (Vue.js) na Vercel  
+- Backend (Express.js) na Railway, Render ili Heroku
+
+## 📋 Koraci za Full-Stack Deployment na Vercel:
 
 ### 1. Push kod na GitHub:
 ```bash
@@ -42,12 +48,13 @@ git push -u origin main
 ### 2. Vercel Deployment:
 1. Idite na [vercel.com](https://vercel.com)
 2. Registrirajte se sa GitHub računom
-3. Kliknite "New Project"
+3. Kliknite "New Project" ili "Import Project"
 4. Odaberite svoj GitHub repository
-5. **Framework Preset**: Other
-6. **Root Directory**: . (ostaviti prazno)
-7. **Build Command**: Ostaviti prazno (Vercel će koristiti vercel.json)
-8. **Output Directory**: Ostaviti prazno
+5. **Framework Preset**: Vite (Vercel će automatski detektovati)
+6. **Root Directory**: frontend
+7. **Build Command**: `npm run build` (Vercel će automatski detektovati)
+8. **Output Directory**: `dist` (Vercel će automatski detektovati)
+9. **Install Command**: ostaviti prazno (automatski će koristiti npm install)
 
 ### 3. Environment Varijable:
 1. U Project Settings -> Environment Variables
@@ -99,3 +106,26 @@ Kad je deployment gotov:
 ## 🌐 Live URL:
 Nakon deployment-a, aplikacija će biti dostupna na:
 `https://your-app-name.vercel.app` 
+
+---
+
+## 🚀 JEDNOSTAVNO REŠENJE - Samo Frontend
+
+Za brži početak, možete deploy-ovati samo frontend sa mock podacima:
+
+### 1. Priprema:
+```bash
+# U frontend direktorijumu
+cd frontend
+npm run build
+```
+
+### 2. Vercel Deployment:
+1. Upload-ujte samo `frontend` folder na GitHub
+2. Vercel će automatski detektovati Vue.js
+3. Aplikacija će raditi sa mock podacima
+
+### 3. Dodavanje Backend-a Kasnije:
+Kada budete spremni za produkciju:
+- Deploy backend na Railway/Render  
+- Ažurirajte `VITE_API_URL` u Vercel env varijablama
