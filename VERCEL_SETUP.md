@@ -45,16 +45,24 @@ git remote add origin https://github.com/your-username/mobili-piu.git
 git push -u origin main
 ```
 
-### 2. Vercel Deployment:
+### 2. Vercel Deployment - AŽURIRANE INSTRUKCIJE:
+
+**Opcija A: Full-Stack (koristi vercel.json):**
 1. Idite na [vercel.com](https://vercel.com)
 2. Registrirajte se sa GitHub računom
 3. Kliknite "New Project" ili "Import Project"
-4. Odaberite svoj GitHub repository
-5. **Framework Preset**: Vite (Vercel će automatski detektovati)
-6. **Root Directory**: frontend
-7. **Build Command**: `npm run build` (Vercel će automatski detektovati)
-8. **Output Directory**: `dist` (Vercel će automatski detektovati)
-9. **Install Command**: ostaviti prazno (automatski će koristiti npm install)
+4. Odaberite svoj GitHub repository: `PatrikF1/MobiliPiu`
+5. **Framework Preset**: Other
+6. **Root Directory**: `./` (root)
+7. **Build Command**: `npm run vercel-build` 
+8. **Output Directory**: `frontend/dist`
+9. **Install Command**: `npm install`
+
+**Opcija B: Samo Frontend (ako A ne radi):**
+1. Kopirajte `vercel-simple.json` u `frontend/vercel.json`
+2. Upload samo `frontend` folder kao novi repo na GitHub
+3. U Vercel odaberite frontend repo
+4. Vercel će automatski detektovati Vite projekt
 
 ### 3. Environment Varijable:
 1. U Project Settings -> Environment Variables
@@ -78,9 +86,14 @@ git push -u origin main
    - Provjerite Gmail App Password
    - Provjerite da su environment varijable postavljene
 
-3. **Build fails**:
+3. **Build fails - "vite: command not found"**:
+   - ✅ RIJEŠENO: Koristite nova build komanda `npm run vercel-build`
+   - Ili koristite Opciju B (samo frontend)
    - Provjerite da li vercel.json ima ispravnu konfiguraciju
+
+4. **Build fails - općenito**:
    - Provjerite da li frontend ima build script
+   - Provjerite logs u Vercel dashboard
 
 ### Build Command za Vercel:
 Vercel automatski detektira build konfiguraciju iz `vercel.json`.
