@@ -8,9 +8,10 @@
     "server": "cd backend && npm run dev",
     "client": "cd frontend && npm run dev",
     "build": "cd frontend && npm install && npm run build",
+    "test-build": "echo 'Testing build process...' && npm run vercel-build && echo 'Build test completed! Check frontend/dist directory.'",
+    "vercel-build": "echo 'Starting Vercel build...' && cd backend && npm install && echo 'Backend deps installed' && cd ../frontend && npm install && echo 'Frontend deps installed' && npm run build && echo 'Frontend build completed'",
     "start": "cd backend && npm start",
-    "install-deps": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "vercel-build": "cd frontend && npm ci && npm run build"
+    "install-deps": "npm install && cd frontend && npm install && cd ../backend && npm install"
   },
   "keywords": ["mobili", "furniture", "appliances", "vue", "express"],
   "author": "Sandra Fabijanić",

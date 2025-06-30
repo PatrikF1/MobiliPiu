@@ -1,5 +1,103 @@
 # 🚀 Vercel Deployment - Mobili Più
 
+## Pregled
+
+Ovaj projekat je konfigurisan za deploy frontend-a na Vercel kao statična stranica. Backend treba da se deploy-uje posebno na drugom servisu.
+
+## Frontend Deploy na Vercel
+
+### 1. Priprema za build
+
+Projekat koristi custom `vercel-build` script koji:
+- Instalira backend dependencies (za build proces)
+- Instalira frontend dependencies  
+- Build-uje frontend aplikaciju
+
+### 2. Environment varijable
+
+Frontend koristi `VITE_API_URL` environment varijablu za konekciju na backend API.
+
+**Lokalno (development):**
+```
+VITE_API_URL=http://localhost:8000/api
+```
+
+**Production (Vercel):**
+```
+VITE_API_URL=https://your-backend-domain.com/api
+```
+
+### 3. Vercel konfiguracija
+
+Postaviti environment varijable u Vercel dashboard:
+1. Idite na Project Settings
+2. Environment Variables
+3. Dodajte: `VITE_API_URL` = `https://your-backend-url.com/api`
+
+### 4. Deploy komande
+
+**Za auto-deploy sa GitHub:**
+- Push na main branch automatski triggera deploy
+
+**Za manual deploy:**
+```bash
+npx vercel --prod
+```
+
+## Backend Deploy
+
+Backend treba da se deploy-uje na servisu koji podržava Node.js aplikacije:
+
+### Preporučeni servisi:
+- **Railway** (besplatan tier)
+- **Heroku** 
+- **Render**
+- **DigitalOcean App Platform**
+
+### Environment varijable za backend:
+```
+SUPABASE_URL=https://gsurwyuqztsxpxfevqti.supabase.co
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzdXJ3eXVxenRzeHB4ZmV2cXRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExMTU3MjAsImV4cCI6MjA2NjY5MTcyMH0.8FCKuhvUJ5tckgYnMqt6foj8lQwb1ScV2GpswbftF0w
+GMAIL_USER=info.mobilipiu@gmail.com
+GMAIL_APP_PASSWORD=wjzz nahw heap keap
+GMAIL_FROM_NAME=Mail
+NODE_ENV=production
+PORT=8000
+```
+
+### Backend deploy script:
+```bash
+npm install
+npm start
+```
+
+## Troubleshooting
+
+### "vite: command not found" greška
+Ova greška je riješena sa novim `vercel-build` scriptom koji eksplicitno instalira dependencies.
+
+### CORS greške
+Ako doživljavate CORS greške, dodajte frontend domain u backend CORS konfiguraciju.
+
+### API konekcija ne radi
+1. Provjerite da li je `VITE_API_URL` pravilno postavljena u Vercel
+2. Provjerite da li backend vraća HTTPS odgovor
+3. Provjerite Network tab u browser dev tools za greške
+
+## Korisni linkovi
+
+- [Vercel Documentation](https://vercel.com/docs)
+- [Railway Documentation](https://docs.railway.app/)
+- [Supabase Documentation](https://supabase.com/docs)
+
+## Status
+
+- ✅ Frontend build process konfiguriran
+- ✅ Vercel.json konfiguriran za SPA
+- ✅ Environment varijable dokumentovane
+- ⏳ Backend deploy (needs separate deployment)
+- ⏳ VITE_API_URL environment varijabla (postaviti u Vercel)
+
 ## Environment Varijable za Vercel
 
 U Vercel Dashboard -> Settings -> Environment Variables dodajte sljedeće:
